@@ -1,7 +1,8 @@
 /__pycache__
 /pages
-/old_pages
 /jobs
+/__pycache__
+config.json
 
 # dependencies
 /frontend/node_modules
