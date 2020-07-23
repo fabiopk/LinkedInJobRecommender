@@ -16,7 +16,7 @@ from pymongo import MongoClient
 from feature_extractor import convert_datetime
 
 
-with open('../config.json') as json_file:
+with open('config.json') as json_file:
     config = json.load(json_file)
 
 

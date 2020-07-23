@@ -17,12 +17,15 @@ class JSONEncoder(json.JSONEncoder):
         return json.JSONEncoder.default(self, o)
 
 
+with open('config.json') as json_file:
+    config = json.load(json_file)
+
 app = Flask(__name__, static_folder='../frontend/build', static_url_path='/')
 app.config['CORS_HEADERS'] = 'Content-Type'
 cors = CORS(app)
 
 
-client = MongoClient('mongodb://admin:5xHwCQiaMMmyze8A@jobs-shard-00-00.wksjz.mongodb.net:27017,jobs-shard-00-01.wksjz.mongodb.net:27017,jobs-shard-00-02.wksjz.mongodb.net:27017/linkedin?ssl=true&replicaSet=atlas-m2kz2u-shard-0&authSource=admin&retryWrites=true&w=majority')
+client = MongoClient(config['MONGO_URI'])
 db = client.get_database('linkedin')
 collection = db.jobIds
 

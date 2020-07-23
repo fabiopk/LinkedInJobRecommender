@@ -6,7 +6,7 @@ import joblib as jb
 import datetime
 import json
 
-with open('../config.json') as json_file:
+with open('config.json') as json_file:
     config = json.load(json_file)
 
 client = MongoClient(config['MONGO_URI'])
