@@ -4,22 +4,19 @@ from feature_extractor import get_ohe_features
 from scipy.sparse import hstack
 import joblib as jb
 import datetime
-import json
+import os
 
-with open('config.json') as json_file:
-    config = json.load(json_file)
-
-client = MongoClient(config['MONGO_URI'])
+client = MongoClient(os.environ.get('MONGO_URI'))
 db = client.get_database('linkedin')
 collection = db.jobIds
 
 df = pd.DataFrame(list(collection.find({'label': {'$exists': False}})))
 
-lgbm = jb.load('./models/lgbm_26_Jul_2020.jb')
-rf = jb.load('./models/rf_26_Jul_2020.jb')
-lr = jb.load('./models/lr_26_Jul_2020.jb')
-desc_vec = jb.load('./models/desc_vec_26_Jul_2020.jb')
-title_vec = jb.load('./models/title_vec_26_Jul_2020.jb')
+lgbm = jb.load('./models/lgbm_28_Jul_2020.jb')
+rf = jb.load('./models/rf_28_Jul_2020.jb')
+lr = jb.load('./models/lr_28_Jul_2020.jb')
+desc_vec = jb.load('./models/desc_vec_28_Jul_2020.jb')
+title_vec = jb.load('./models/title_vec_28_Jul_2020.jb')
 
 usedFeatures = ['applicants', 'applicants_per_day', 'description_len']
 
@@ -50,7 +47,6 @@ for unpred_result in unlabeled:
     pred_value = float(
         df[df['jobId'] == unpred_result['jobId']]['pred'])
     unpred_result['pred_date'] = datetime.datetime.utcnow()
-    #bulk.replace_one({'jobId': unpred_result['jobId']}, unpred_result['pred'])
     bulk.find({'jobId': unpred_result['jobId']}).update(
         {'$set': {'pred': pred_value}})
 

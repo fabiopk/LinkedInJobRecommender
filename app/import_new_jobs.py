@@ -10,15 +10,10 @@ import glob
 
 import requests as rq
 import bs4 as bs4
-import json
+import os
 from pymongo import MongoClient
 
 from feature_extractor import convert_datetime
-
-
-with open('config.json') as json_file:
-    config = json.load(json_file)
-
 
 queries = ["data%20scientist"]
 
@@ -34,7 +29,7 @@ locations = ["São%20Paulo%2C%20Brazil",
 
 url_template = "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords={query}&location={location}&pageNum=0&f_TP=1%2C2&start={page}"
 
-client = MongoClient(config['MONGO_URI'])
+client = MongoClient(os.environ.get('MONGO_URI'))
 db = client.get_database('linkedin')
 collection = db.jobIds
 

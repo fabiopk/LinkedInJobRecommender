@@ -1,6 +1,7 @@
 #!flask/bin/python
 from flask import Flask
 from pymongo import MongoClient, DESCENDING, ASCENDING
+import os
 import json
 # from bson.json_util import dumps
 from flask import jsonify
@@ -17,15 +18,12 @@ class JSONEncoder(json.JSONEncoder):
         return json.JSONEncoder.default(self, o)
 
 
-with open('config.json') as json_file:
-    config = json.load(json_file)
-
 app = Flask(__name__, static_folder='../frontend/build', static_url_path='/')
 app.config['CORS_HEADERS'] = 'Content-Type'
 cors = CORS(app)
 
 
-client = MongoClient(config['MONGO_URI'])
+client = MongoClient(os.environ.get('MONGO_URI'))
 db = client.get_database('linkedin')
 collection = db.jobIds
 
