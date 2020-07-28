@@ -1,6 +1,7 @@
 import pandas as pd
 import re
 from datetime import datetime, timedelta
+import json
 
 all_columns_dict = {
     'Seniority level': [
@@ -85,9 +86,14 @@ def convert_datetime(datetime_ago):
     )
 
 
+def get_portuguese_stop_words():
+    with open('../portuguese_stop_words.json') as stop_words:
+        return json.load(stop_words)
+
+
 def get_ohe_features(df, feature):
 
-    ohe_features = pd.get_dummies(df['Seniority level'])
+    ohe_features = pd.get_dummies(df[feature])
 
     # Get missing columns in the training test
     missing_cols = set(all_columns_dict[feature]) - set(ohe_features.columns)

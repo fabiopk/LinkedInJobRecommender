@@ -124,7 +124,7 @@ for i, job in enumerate(collection.find({'loaded': True, 'title': None})):
         print(f"Job {jobId}:")
 
         page_html = f.read()
-        parsed = bs4.BeautifulSoup(page_html, features="lxml")
+        parsed = bs4.BeautifulSoup(page_html)
         company_a = parsed.findAll("a", class_="topcard__org-name-link")
         if company_a:
             job['company'] = company_a[0].get_text()
