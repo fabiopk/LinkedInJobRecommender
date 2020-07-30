@@ -16,10 +16,10 @@ Isolated scripts are used to automate the process of data scraping and prediciti
 
 ## What is the stack used?
 
-Python + scikit_learn + pandas + numpy for data modeling
-MongoDB as the database
-Flask + Guinicorn for the backend portion
-React for the frontend application
+- Python + scikit_learn + pandas + numpy for data modeling
+- MongoDB as the database
+- Flask + Guinicorn for the backend portion
+- React for the frontend application
 
 ## How can I use it for recommending ME jobs?
 
