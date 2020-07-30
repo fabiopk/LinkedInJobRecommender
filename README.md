@@ -3,6 +3,8 @@ A (personal) recommendation system for LinkedIn jobs. Data scraping, feature cre
 
 Demo: https://linkedinjob.herokuapp.com/
 
+(It is trainned to suggest Data Scientist positions)
+
 ## What is it?
 
 This projet shows the creation of a job recommendation system. 
