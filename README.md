@@ -20,6 +20,7 @@ Isolated scripts are used to automate the process of data scraping and prediciti
 - MongoDB as the database
 - Flask + Guinicorn for the backend portion
 - React for the frontend application
+- Jupyter notebook for testing
 
 ## How can I use it for recommending ME jobs?
 
