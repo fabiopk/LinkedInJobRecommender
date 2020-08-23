@@ -24,6 +24,32 @@ Isolated scripts are used to automate the process of data scraping and prediciti
 - React for the frontend application
 - Jupyter notebook for testing
 
+## Getting Started
+
+I suggest following the code on the notebooks, to get a feel for what each cell is doing.
+
+First, get the files extracted:
+
+- `$ git clone https://github.com/fabiopk/LinkedInJobRecommender.git`
+- `$ cd LinkedInJobRecommender`
+
+This project is using a MongoDB database to store the data.
+You can setup your instance as you prefer. I suggest two main ways:
+
+- Using [docker](https://hub.docker.com/_/mongo)
+- Creating a cloud instance. There are many options, you can use [Mongo Atlas](https://www.mongodb.com/cloud/atlas) for free for small DBs.
+
+After you have your DB, create a file called `config.json` at the root folder. It should be on the format:
+
+```
+{
+  "MONGO_URI": "mongodb://<REPLACE_WITH_YOUR_MONGO_URI>"
+}
+
+```
+
+Then, run a jupyter notebook server, and check out the `.ipynb` files!
+
 ## How can I use it for recommending ME jobs?
 
 You can either follow the jupyter notebooks or the python scripts, and chage the query and city as you like.
