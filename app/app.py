@@ -22,7 +22,6 @@ app = Flask(__name__, static_folder='../frontend/build', static_url_path='/')
 app.config['CORS_HEADERS'] = 'Content-Type'
 cors = CORS(app)
 
-
 client = MongoClient(os.environ.get('MONGO_URI'))
 db = client.get_database('linkedin')
 collection = db.jobIds
@@ -67,7 +66,8 @@ def get_predictions():
 
     sortMode = ASCENDING if mode == 'worst' else DESCENDING
 
-    for s in collection.find(query).sort([("pred", sortMode)]).skip(int(start)).limit(20):
+    for s in collection.find(query).sort([("pred", sortMode)]).skip(int(start)).limit(75):
+
         if 'label' in s:
             label = s['label']
         else:

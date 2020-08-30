@@ -17,7 +17,7 @@ from feature_extractor import convert_datetime
 
 queries = ["data%20scientist"]
 
-NUM_PAGES = 1
+NUM_PAGES = 2
 
 locations = ["São%20Paulo%2C%20Brazil",
              "Porto%20Alegre%2C%20Rio%20Grande%20do%20Sul%2C%20Brazil",

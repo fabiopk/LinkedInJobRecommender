@@ -41,11 +41,12 @@ export default class JobContainer extends Component {
     axios
       .get("/preds", {
         params: {
-          start: this.state.page * 20,
+          start: 0,
           mode: this.props.mode,
           label: this.props.label,
           time: this.props.time,
         },
+        timeout: 2000,
       })
       .then((res) => {
         const { result } = res.data;
@@ -55,7 +56,6 @@ export default class JobContainer extends Component {
 
   handlePageClick(page) {
     this.setState({ page });
-    this.fetchData();
   }
 
   handleSetLabel(job, label) {
@@ -75,10 +75,13 @@ export default class JobContainer extends Component {
     return (
       <JobTable
         header={this.header}
-        rows={this.state.jobs}
+        rows={this.state.jobs.slice(
+          this.state.page * 15,
+          (this.state.page + 1) * 15
+        )}
         onPageClick={this.handlePageClick}
         onSetLabel={this.handleSetLabel}
-        numPages={5}
+        numPages={parseInt(this.state.jobs.length / 15)}
         page={this.state.page}
       />
     );
