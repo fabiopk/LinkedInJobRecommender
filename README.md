@@ -1,7 +1,7 @@
 # LinkedInJobRecommender
 A (personal) recommendation system for LinkedIn jobs. Data scraping, feature creation, modeling and frontend deployment.
 
-Demo: https://linkedinjob.herokuapp.com/
+Demo: https://linkedin-job-recom.herokuapp.com/
 
 (It is trainned to suggest Data Scientist positions)
 
